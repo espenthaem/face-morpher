@@ -98,8 +98,8 @@ def prepare_data(input_size, batch_size, celebA_path, selfie_path, split=0.75):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument('--image-size', type=int, default=128,
-                        help='image size, assuming square images. Default argument is 128')
+    parser.add_argument('--image-size', type=int, default=256,
+                        help='image size, assuming square images. Default argument is 256')
     parser.add_argument('--latent-dim', type=int, default=512,
                         help="latent dimension")
     parser.add_argument('--epochs', type=int, default=10,
@@ -123,7 +123,7 @@ if __name__ == "__main__":
     print(encoder.summary())
     print(decoder.summary())
     train, test = prepare_data(input_size, args.batch_size, args.celeb_dir, args.selfie_dir)
-    
+
     variational_autoencoder.fit_generator(generator=train,
                                           validation_data=test,
                                           epochs=args.epochs,
